@@ -1,98 +1,102 @@
+let clickCount = 0;
+let result = 0;
+
+document.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", () => handleClick(button));
+});
+
+const computerScoreElement = document.getElementById("computerScore");
+const playerScoreElement = document.getElementById("playerScore");
+const tieScoreElement = document.getElementById("tieScore");
+const gameInfoElement = document.getElementById("gameInfo");
+const roundInfoElement = document.getElementById("roundInfo");
+
+
+function handleClick(button) {
+  let humanChoice = "";
+
+  if (button.id === "btnRock") {
+    humanChoice = "Rock";
+  } else if (button.id === "btnPaper") {
+    humanChoice = "Paper";
+  } else if (button.id === "btnScissor") {
+    humanChoice = "Scissors";
+  } else {
+    location.reload();
+  }
+
+  playRound(humanChoice);
+
+  // Update scores
+  if (result === 0) {
+    tieScoreElement.innerText = parseInt(tieScoreElement.innerText) + 1;
+  } else if (result === 1) {
+    playerScoreElement.innerText = parseInt(playerScoreElement.innerText) + 1;
+  } else {
+    computerScoreElement.innerText =
+      parseInt(computerScoreElement.innerText) + 1;
+  }
+
+  // Increment click count
+  clickCount++;
+  gameInfoElement.innerText = "Round " + (clickCount + 1);
+
+  // Stop accepting inputs after 5 clicks
+  if (clickCount >= 5) {
+    setTimeout(() => {
+      document.querySelectorAll("button").forEach((btn) => {
+        if (btn.id === "restartBtn") {
+          btn.disabled = false; // Restart button remains enabled
+        } else {
+          btn.disabled = true; // All other buttons are disabled
+        } 
+      });
+      gameInfoElement.innerText = "Game over! 5 rounds have been played.";
+    }, 0); // Use setTimeout to ensure the DOM updates first
+  }
+}
+
 function getComputerChoice() {
   const choices = ["Rock", "Paper", "Scissors"];
   const randomIndex = Math.floor(Math.random() * choices.length);
   return choices[randomIndex];
 }
 
-function getHumanChoise() {
-  let h;
-  while (true) {
-    h = prompt("Please enter your choise: Rock Paper or Scissors");
-    h = h.charAt(0).toUpperCase() + h.slice(1).toLowerCase();
-    if (h === "Rock" || h === "Paper" || h === "Scissors") {
-      return h;
-    } else {
-      alert("You entered something Wrong please try again!");
-    }
-  }
-}
+function playRound(humanChoice) {
+  const computerChoice = getComputerChoice();
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-  let message = "";
-
-  for (let i = 0; i < 5; i++) {
-    let computerSelection = getComputerChoice();
-    let humanSelection = getHumanChoise();
-
-    console.log(humanSelection);
-    console.log(computerSelection);
-
-    let RoundResult = playRound(computerSelection, humanSelection);
-
-    if (RoundResult === 1) {
-      humanScore++;
-    } else if (RoundResult === 2) {
-      computerScore++;
-    }
-  }
-
-  if (humanScore === computerScore) {
-    message = "Tie! No one won the game :(";
-  } else if (humanScore > computerScore) {
-    message =
-      "You won! \nYour Score: " +
-      humanScore +
-      "\nComputer Score: " +
-      computerScore;
-  } else {
-    message =
-      "You Lost! \nYour Score: " +
-      humanScore +
-      "\nComputer Score: " +
-      computerScore;
-  }
-
-  return message;
-}
-
-function playRound(computerChoise, humanChoise) {
-  // result 0 equals tie, result 1 equals user win, and result 2 equals computer win
-  let result = 0;
-
-  if (computerChoise === humanChoise) {
-    alert("It's a tie");
-  } else if (computerChoise === "Rock") {
-    if (humanChoise === "Paper") {
-      alert("You Win! " + humanChoise + " beats " + computerChoise);
+  if (computerChoice === humanChoice) {
+    roundInfoElement.innerText = "It's a tie";
+    result = 0;
+  } else if (computerChoice === "Rock") {
+    if (humanChoice === "Paper") {
+      roundInfoElement.innerText =
+        "You Win! " + humanChoice + " beats " + computerChoice;
       result = 1;
     } else {
-      alert("You Lose! " + humanChoise + " gets beaten by " + computerChoise);
+      roundInfoElement.innerText =
+        "You Lose! " + humanChoice + " gets beaten by " + computerChoice;
       result = 2;
     }
-  } else if (computerChoise === "Paper") {
-    if (humanChoise === "Scissors") {
-      alert("You Win! " + humanChoise + " beats " + computerChoise);
+  } else if (computerChoice === "Paper") {
+    if (humanChoice === "Scissors") {
+      roundInfoElement.innerText =
+        "You Win! " + humanChoice + " beats " + computerChoice;
       result = 1;
     } else {
-      alert("You Lose! " + humanChoise + " gets beaten by " + computerChoise);
+      roundInfoElement.innerText =
+        "You Lose! " + humanChoice + " gets beaten by " + computerChoice;
       result = 2;
     }
-  } else if (computerChoise === "Scissors") {
-    if (humanChoise === "Rock") {
-      alert("You Win! " + humanChoise + " beats " + computerChoise);
+  } else if (computerChoice === "Scissors") {
+    if (humanChoice === "Rock") {
+      roundInfoElement.innerText =
+        "You Win! " + humanChoice + " beats " + computerChoice;
       result = 1;
     } else {
-      alert("You Lose! " + humanChoise + " gets beaten by " + computerChoise);
+      roundInfoElement.innerText =
+        "You Lose! " + humanChoice + " gets beaten by " + computerChoice;
       result = 2;
     }
   }
-  return result;
 }
-
-alert("Let's play 5 rounds of Rock Paper Scissors!");
-
-let gameWinner = playGame();
-
-alert(gameWinner);

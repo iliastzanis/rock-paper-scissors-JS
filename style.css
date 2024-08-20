@@ -1,0 +1,13 @@
+h1 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+}
+fieldset,div,button, output{
+    margin: 1em;
+    padding: 1em;
+}
+text {
+    margin-left: 2.5em;
+}
