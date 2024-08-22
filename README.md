@@ -1,6 +1,6 @@
 # Rock, Paper, Scissors Game
 
-This is a simple Rock, Paper, Scissors game implemented in JavaScript. The game is played entirely via browser alerts.
+This is an enhanced Rock, Paper, Scissors game implemented in JavaScript with a graphical user interface (UI). The game is played in the browser, with a simple and intuitive interface.
 
 ## Table of Contents
 
@@ -14,15 +14,19 @@ This is a simple Rock, Paper, Scissors game implemented in JavaScript. The game 
 ## Project Structure
 
 The project consists of the following files:
-- `index.html`: The index.html file containing the basic structure of the webpage.
-- `script.js`: The script.js file containing the game logic.
+- `index.html`: The main HTML file containing the structure of the webpage.
+- `style.css`: The CSS file containing the styling for the UI.
+- `script.js`: The JavaScript file containing the game logic.
 - `README.md`: This readme file.
 
 ## Features
 
-- Play against the computer.
-- Keep track of scores for both the human player and the computer.
-- Play 5 rounds and declare a winner at the end.
+- Play against the computer with a UI.
+- Interactive buttons to choose Rock, Paper, or Scissors.
+- Keep track of scores for both the player and the computer.
+- The first to score 3 points wins the game.
+- Dynamic result display after each round.
+- Reset the game to play again after a winner is declared.
 
 ## Setup
 
@@ -41,25 +45,27 @@ The project consists of the following files:
 
 ## Usage
 
-The game is played via browser alerts and prompts. Follow the steps below to play:
+The game is played via the browser interface. Follow the steps below to play:
 
 1. **Open the `index.html` file in your browser**.
 2. **Start the game**:
-    - The game will prompt you to enter your choice for each round.
-    - You can enter `rock`, `paper`, or `scissors` (case-insensitive).
+    - Click on one of the buttons (Rock, Paper, or Scissors) to make your choice.
+    - The computer will automatically make a random selection.
+    - The result of each round will be displayed, along with updated scores.
 
-3. **View the results**:
-    - The result of each round will be displayed in an alert.
-    - After 5 rounds, the final winner will be declared via an alert.
+3. **Winning the Game**:
+    - The first player (either you or the computer) to reach 3 points wins.
+    - Once a winner is declared, you can reset the game using the reset button.
 
 ## How to Play
 
-1. The game will prompt the user to enter their choice (Rock, Paper, or Scissors) via an alert.
-2. The computer will randomly select a choice.
-3. The game will determine the winner of each round and update the scores.
-4. After 5 rounds, the game will declare the overall winner based on the scores.
+1. The game displays three buttons: Rock, Paper, and Scissors.
+2. Click one of the buttons to make your choice.
+3. The computer will make a random choice.
+4. The game determines the winner of each round and updates the scores.
+5. The first to score 3 points wins the game.
+6. You can reset the game and play again once a winner is declared.
 
 ## Live Demo
 
 You can play the game online via GitHub Pages [here](https://iliastzanis.github.io/rock-paper-scissors-JS/).
-
